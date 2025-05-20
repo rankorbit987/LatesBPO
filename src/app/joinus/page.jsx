@@ -37,8 +37,9 @@ const JoinUs = () => {
 
         {/* Text content */}
         <div className="relative">
-          <h1 className="text-4xl md:text-5xl font-bold">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#c93c3c]">
             Join Our Growing Global Team
+            <span className="text-white">.</span>
           </h1>
           <p className="mt-4 text-lg md:text-xl mx-auto max-w-2xl">
             We’re not just offering jobs – we’re building careers with purpose.

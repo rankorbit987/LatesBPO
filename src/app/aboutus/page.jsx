@@ -50,9 +50,9 @@ const AboutUs = () => {
             
             {/* Content */}
             <div className="relative z-10 max-w-4xl mx-auto text-center mt-5">
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#9c3c3c]">
                 About Us
-                <span style={{ color: colors.accent }}>.</span>
+                <span className="text-white">.</span>
               </h1>
               <p className="mt-6 text-xl text-gray-200 max-w-3xl mx-auto">
                 Discover the people and passion behind our success
