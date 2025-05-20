@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import * as Icons from 'lucide-react';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 
 const colors = {
   primary: '#C93C3C',
@@ -33,6 +34,32 @@ const services = {
 const iconList = ['Headset', 'Megaphone', 'Settings'];
 
 export default function OurServices() {
+  const [visibleCards, setVisibleCards] = useState([]);
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting && !visibleCards.includes(index)) {
+            setVisibleCards(prev => [...prev, index]);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    cardRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      cardRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [visibleCards]);
+
   return (
     <section className="py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 font-montserrat bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A]" id="services">
       <h1 className="text-[#C93C3C] text-2xl md:text-3xl font-bold mb-4">
@@ -50,7 +77,9 @@ export default function OurServices() {
           return (
             <div
               key={category}
-              className="group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl rounded-xl"
+              ref={(el) => (cardRefs.current[idx] = el)}
+              className={`group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl rounded-xl transform transition-all duration-700 ease-out 
+                ${visibleCards.includes(idx) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ backgroundColor: colors.secondary }}
             >
               {/* Expanding Circle */}

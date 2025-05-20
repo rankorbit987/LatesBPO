@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import * as Icons from "lucide-react";
 import Image from "next/image";
@@ -32,8 +33,38 @@ const solutions = {
 const iconList = ["Briefcase", "Cpu", "MessagesSquare"];
 
 export default function OurSolutions() {
+  const containerRef = useRef(null);
+  const [visibleCards, setVisibleCards] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute("data-index"));
+            setVisibleCards((prev) =>
+              prev.includes(index) ? prev : [...prev, index]
+            );
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const cards = containerRef.current?.querySelectorAll(".solution-card");
+    cards?.forEach((card) => observer.observe(card));
+
+    return () => {
+      cards?.forEach((card) => observer.unobserve(card));
+    };
+  }, []);
+
   return (
-    <section className="py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 font-montserrat" id="solutions">
+    <section
+      className="py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 font-montserrat"
+      id="solutions"
+      ref={containerRef}
+    >
       <h1 className="text-[#C93C3C] text-2xl md:text-3xl font-bold mb-4">
         Our Solutions<span className="text-white">.</span>
       </h1>
@@ -46,10 +77,15 @@ export default function OurSolutions() {
           const Icon = Icons[iconList[idx]] || Icons.CircleHelp;
           const categoryPath = category.toLowerCase().replace(/ /g, "-");
 
+          const isVisible = visibleCards.includes(idx);
+
           return (
             <div
               key={category}
-              className="group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl rounded-xl"
+              data-index={idx}
+              className={`solution-card group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl transition-all duration-700 hover:shadow-2xl rounded-xl opacity-0 translate-y-10 ${
+                isVisible ? 'opacity-100 translate-y-0' : ''
+              }`}
               style={{ backgroundColor: colors.secondary }}
             >
               {/* Expanding Circle */}
@@ -68,10 +104,7 @@ export default function OurSolutions() {
 
               {/* Card Content */}
               <div className="relative z-10 pt-6 space-y-4 text-center">
-                <h3
-                  className="text-xl font-semibold transition"
-                  style={{ color: colors.lightText }}
-                >
+                <h3 className="text-xl font-semibold transition" style={{ color: colors.lightText }}>
                   {category}
                 </h3>
                 <p className="text-base transition text-gray-300 line-clamp-3">
