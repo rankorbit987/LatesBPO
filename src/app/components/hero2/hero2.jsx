@@ -132,7 +132,7 @@ const Hero2 = () => {
           </div>
 
           {/* Desktop Cards */}
-          <div className="hidden lg:flex w-full max-w-lg h-[400px] relative">
+          <div className="hidden lg:flex w-full max-w-lg h-[350px] relative">
             {cards.map((card, index) => (
               <div
                 key={index}
