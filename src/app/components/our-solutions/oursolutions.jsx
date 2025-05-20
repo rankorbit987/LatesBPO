@@ -68,7 +68,7 @@ export default function OurSolutions() {
       <h1 className="text-[#C93C3C] text-2xl md:text-3xl font-bold mb-4">
         Our Solutions<span className="text-white">.</span>
       </h1>
-      <p className="text-lg text-gray-300 mt-4 max-w-3xl pb-10">
+      <p className="text-lg text-gray-300 mt-4 max-w-3xl">
         Innovative technology solutions designed to transform your business operations
       </p>
 
@@ -145,7 +145,7 @@ export default function OurSolutions() {
       <div className="flex justify-center">
         <Link
           href="/solution-page"
-          className="relative overflow-hidden inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white text-[#C93C3C] shadow-md group font-semibold transition-transform duration-300 hover:scale-105"
+          className="relative overflow-hidden inline-flex items-center gap-2 px-8 py-3 mt-10 rounded-full bg-white text-[#C93C3C] shadow-md group font-semibold transition-transform duration-300 hover:scale-105"
         >
           <span className="absolute inset-0 bg-[#C93C3C] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-0 rounded-full"></span>
           <span className="relative z-10 transition-colors duration-200 group-hover:text-white whitespace-nowrap">
