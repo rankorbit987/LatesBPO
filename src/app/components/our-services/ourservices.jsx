@@ -61,7 +61,7 @@ export default function OurServices() {
   }, [visibleCards]);
 
   return (
-    <section className="py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 font-montserrat bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A]" id="services">
+    <section className="py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 font-montserrat bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A]" id="services-section">
       <h1 className="text-[#C93C3C] text-2xl md:text-3xl font-bold mb-4">
         Our Services<span className="text-white">.</span>
       </h1>

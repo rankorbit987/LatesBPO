@@ -78,22 +78,31 @@ const Hero2 = () => {
       <div className="relative z-20 w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-2 lg:gap-12 xl:gap-16">
         {/* Hero Text - Now takes exactly half width on desktop */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left px-2 lg:px-0">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight gradient-text dm-serif-display-regular">
-            Transform Your Business with Our Expert BPO Services
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight gradient-text dm-serif-display-regular text-white">
+            Transform Your Business with Our <span className='text-[#c93c3c]'> Expert BPO Services</span>
           </h1>
           <p className="text-lg text-gray-200 font-medium mt-5 max-w-lg mx-auto lg:mx-0">
             Comprehensive digital solutions for modern business challenges.
           </p>
-          <div className="pointer-events-auto flex flex-col sm:flex-row gap-4 pt-8 justify-center lg:justify-start">
-            <button className="relative overflow-hidden rounded-3xl bg-[#c93c3c] text-white px-6 py-3 font-semibold group transition-transform duration-300 hover:scale-105 shadow-lg">
-              <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-0"></span>
-              <span className="relative text-white group-hover:text-[#c93c3c] transition-colors duration-200 z-10">
-                Explore Services
-              </span>
-            </button>
+          <div className=" pointer-events-auto flex flex-col sm:flex-row gap-4 pt-8 justify-center lg:justify-start">
+            <button
+  onClick={() => {
+    const section = document.getElementById('services-section');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }}
+  className="cursor-pointer relative overflow-hidden rounded-3xl bg-[#c93c3c] text-white px-6 py-3 font-semibold group transition-transform duration-300 hover:scale-105 shadow-lg"
+>
+  <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-0"></span>
+  <span className="relative text-white group-hover:text-[#c93c3c] transition-colors duration-200 z-10">
+    Explore Services
+  </span>
+</button>
+
 
             <button
-              className="relative overflow-hidden rounded-3xl bg-white text-neutral-900 px-6 py-3 font-semibold group transition-transform duration-300 hover:scale-105 shadow-lg"
+              className="relative cursor-pointer overflow-hidden rounded-3xl bg-white text-neutral-900 px-6 py-3 font-semibold group transition-transform duration-300 hover:scale-105 shadow-lg"
               onClick={() => {
                 const form = document.getElementById('contact-form');
                 if (form) form.scrollIntoView({ behavior: 'smooth' });

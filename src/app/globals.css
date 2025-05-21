@@ -122,4 +122,22 @@ html {
 .animate-fadeInUp {
   animation: fadeInUp 0.5s ease forwards;
 }
+/* Rhombus Shape Utility */
+/* globals.css */
+.rhombus {
+  --r: 30px; /* radius */
+  height: 600px;
+  aspect-ratio: 1;
+  margin: calc(tan(22.5deg) * var(--r));
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%) margin-box;
+  --_g: /calc(2 * var(--r)) calc(2 * var(--r)) radial-gradient(#000 70%, #0000 72%);
+  --_s: calc(100% - (1 - tan(22.5deg)) * var(--r));
+  mask:
+    conic-gradient(#000 0 0) no-repeat 50% / var(--_s) var(--_s),
+    top var(--_g) no-repeat space,
+    left var(--_g) space no-repeat;
+  background: #88A65E;
+  z-index: 10;
+}
+
 
