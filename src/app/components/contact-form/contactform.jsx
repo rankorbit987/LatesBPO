@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from "framer-motion";
+import emailjs from '@emailjs/browser';
 
 export default function ContactForm({
   title = "Get in Touch",
@@ -10,6 +11,8 @@ export default function ContactForm({
   accentColor = '#C93C3C',
   textColor = '#2C3E50'
 }) {
+  const formRef = useRef();
+
   const {
     register,
     handleSubmit,
@@ -17,9 +20,22 @@ export default function ContactForm({
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async () => {
+    try {
+      const result = await emailjs.sendForm(
+        'service_vhnkpjm', // Replace with your EmailJS Service ID
+        'template_4k9x876', // Replace with your Template ID
+        formRef.current,
+        'HYyZTN7Kqq4GK7U07' // Replace with your Public Key
+      );
+
+      console.log(result.text);
+      alert('Message sent successfully!');
+      reset(); // Clear form on success
+    } catch (error) {
+      console.error(error.text);
+      alert('Failed to send message. Please try again.');
+    }
   };
 
   const inputBaseClass = (hasError) =>
@@ -29,7 +45,7 @@ export default function ContactForm({
 
   return (
     <div
-      className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8 sm:py-10 md:py-12 lg:py-16 "
+      className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8 sm:py-10 md:py-12 lg:py-16"
       id="contact-form"
     >
       <div className="max-w-4xl mx-auto">
@@ -41,25 +57,26 @@ export default function ContactForm({
         </div>
 
         <form
+          ref={formRef}
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-4 sm:space-y-5 md:space-y-6 p-5 sm:p-6 md:p-8 rounded-lg shadow-sm bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A]  text-white"
+          className="space-y-4 sm:space-y-5 md:space-y-6 p-5 sm:p-6 md:p-8 rounded-lg shadow-sm bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white"
         >
           {/* Full Name */}
           <div>
             <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Full Name *</label>
             <input
-              {...register('name', {
+              {...register('from_name', {
                 required: 'Name is required',
                 pattern: {
                   value: /^[A-Za-z ]+$/i,
                   message: 'Invalid name format',
                 },
               })}
-              className={inputBaseClass(errors.name)}
+              className={inputBaseClass(errors.from_name)}
               placeholder="John Doe"
             />
-            {errors.name && (
-              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.name.message}</p>
+            {errors.from_name && (
+              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.from_name.message}</p>
             )}
           </div>
 
@@ -68,18 +85,18 @@ export default function ContactForm({
             <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Email Address *</label>
             <input
               type="email"
-              {...register('email', {
+              {...register('from_email', {
                 required: 'Email is required',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: 'Invalid email address',
                 },
               })}
-              className={inputBaseClass(errors.email)}
+              className={inputBaseClass(errors.from_email)}
               placeholder="john@example.com"
             />
-            {errors.email && (
-              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.email.message}</p>
+            {errors.from_email && (
+              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.from_email.message}</p>
             )}
           </div>
 
@@ -105,37 +122,35 @@ export default function ContactForm({
           <div>
             <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Comments *</label>
             <textarea
-              {...register('comments', {
+              {...register('message', {
                 required: 'Comments are required',
                 minLength: { value: 20, message: 'Minimum 20 characters' },
                 maxLength: { value: 500, message: 'Maximum 500 characters' },
               })}
               rows={4}
-              className={inputBaseClass(errors.comments)}
+              className={inputBaseClass(errors.message)}
               placeholder="How can we assist you?"
             />
-            {errors.comments && (
-              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.comments.message}</p>
+            {errors.message && (
+              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.message.message}</p>
             )}
           </div>
 
           {/* Submit Button */}
-          {/* Submit Button */}
-<div className="flex justify-center pt-4">
-  <motion.button
-    type="submit"
-    className="relative flex items-center justify-center overflow-hidden rounded-full bg-white text-sm sm:text-base font-medium py-2 sm:py-3 px-4 sm:px-6 shadow-[10px_10px_20px_rgba(0,0,0,0.05)] cursor-pointer group"
-    style={{ "--clr": accentColor }}
-    whileHover={{ scale: 1.03 }}
-    transition={{ duration: 0.3 }}
-  >
-    <span className="absolute inset-0 bg-[var(--clr)] transform -translate-x-full transition-transform duration-300 group-hover:translate-x-0 z-0"></span>
-    <span className="relative z-10 text-[var(--clr)] transition-colors duration-200 group-hover:text-white">
-      Send Message
-    </span>
-  </motion.button>
-</div>
-
+          <div className="flex justify-center pt-4">
+            <motion.button
+              type="submit"
+              className="relative flex items-center justify-center overflow-hidden rounded-full bg-white text-sm sm:text-base font-medium py-2 sm:py-3 px-4 sm:px-6 shadow-[10px_10px_20px_rgba(0,0,0,0.05)] cursor-pointer group"
+              style={{ "--clr": accentColor }}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+            >
+              <span className="absolute inset-0 bg-[var(--clr)] transform -translate-x-full transition-transform duration-300 group-hover:translate-x-0 z-0"></span>
+              <span className="relative z-10 text-[var(--clr)] transition-colors duration-200 group-hover:text-white">
+                Send Message
+              </span>
+            </motion.button>
+          </div>
         </form>
       </div>
     </div>

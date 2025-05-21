@@ -144,7 +144,7 @@ export default function NavigationBar() {
                       href="/services/customer-support-services"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("services", 0, e)}
-                      onClick={closeAll}
+                      
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Headset className="w-4 h-4" /> Customer Support
