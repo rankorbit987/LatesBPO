@@ -23,15 +23,15 @@ export default function ContactForm({
   const onSubmit = async () => {
     try {
       const result = await emailjs.sendForm(
-        'service_vhnkpjm', // Replace with your EmailJS Service ID
-        'template_4k9x876', // Replace with your Template ID
+        'service_vhnkpjm',
+        'template_4k9x876',
         formRef.current,
-        'HYyZTN7Kqq4GK7U07' // Replace with your Public Key
+        'HYyZTN7Kqq4GK7U07'
       );
 
       console.log(result.text);
       alert('Message sent successfully!');
-      reset(); // Clear form on success
+      reset();
     } catch (error) {
       console.error(error.text);
       alert('Failed to send message. Please try again.');
@@ -44,15 +44,10 @@ export default function ContactForm({
     } placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[${accentColor}] focus:border-[${accentColor}]`;
 
   return (
-    <div
-      className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8 sm:py-10 md:py-12 lg:py-16"
-      id="contact-form"
-    >
+    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8 sm:py-10 md:py-12 lg:py-16" id="contact-form">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-[#c93c3c]">
-            {title}
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-[#c93c3c]">{title}</h1>
           <p className="text-white text-sm sm:text-base md:text-lg">{subtitle}</p>
         </div>
 
@@ -61,10 +56,11 @@ export default function ContactForm({
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-4 sm:space-y-5 md:space-y-6 p-5 sm:p-6 md:p-8 rounded-lg shadow-sm bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white"
         >
-          {/* Full Name */}
+          {/* Name */}
           <div>
             <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Full Name *</label>
             <input
+              type="text"
               {...register('from_name', {
                 required: 'Name is required',
                 pattern: {
@@ -74,13 +70,12 @@ export default function ContactForm({
               })}
               className={inputBaseClass(errors.from_name)}
               placeholder="John Doe"
+              name="from_name"
             />
-            {errors.from_name && (
-              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.from_name.message}</p>
-            )}
+            {errors.from_name && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.from_name.message}</p>}
           </div>
 
-          {/* Email Address */}
+          {/* Email */}
           <div>
             <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Email Address *</label>
             <input
@@ -94,16 +89,16 @@ export default function ContactForm({
               })}
               className={inputBaseClass(errors.from_email)}
               placeholder="john@example.com"
+              name="from_email"
             />
-            {errors.from_email && (
-              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.from_email.message}</p>
-            )}
+            {errors.from_email && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.from_email.message}</p>}
           </div>
 
-          {/* Phone Number */}
+          {/* Phone */}
           <div>
             <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Phone Number</label>
             <input
+              type="tel"
               {...register('phone', {
                 pattern: {
                   value: /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/,
@@ -112,13 +107,12 @@ export default function ContactForm({
               })}
               className={inputBaseClass(errors.phone)}
               placeholder="+1 (555) 123-4567"
+              name="phone"
             />
-            {errors.phone && (
-              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.phone.message}</p>
-            )}
+            {errors.phone && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.phone.message}</p>}
           </div>
 
-          {/* Comments */}
+          {/* Message */}
           <div>
             <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Comments *</label>
             <textarea
@@ -130,13 +124,12 @@ export default function ContactForm({
               rows={4}
               className={inputBaseClass(errors.message)}
               placeholder="How can we assist you?"
+              name="message"
             />
-            {errors.message && (
-              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.message.message}</p>
-            )}
+            {errors.message && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.message.message}</p>}
           </div>
 
-          {/* Submit Button */}
+          {/* Button */}
           <div className="flex justify-center pt-4">
             <motion.button
               type="submit"
