@@ -48,7 +48,6 @@ import {
   Type,
   ClipboardCopy,
 } from "lucide-react";
-import { useLoader } from "@/app/context/LoaderContext";
 
 export default function NavigationBar() {
   const [showServices, setShowServices] = useState(false);
@@ -107,14 +106,6 @@ export default function NavigationBar() {
     setMobileSolutionsOpen(false);
   };
 
-  const { setLoading } = useLoader();
-  const handleClick = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false); // stop loader after task
-    }, 2000);
-  };
-
   return (
     <div className="z-50 font-montserrat fixed lg:top-3 left-0 right-0 shadow-md lg:mx-20 xl-mx-24 ">
       {/* Top Bar */}
@@ -134,7 +125,6 @@ export default function NavigationBar() {
             <Link
               href="/service-page"
               className="flex items-center gap-1 font-medium hover:bg-[#c93c3c] py-2 px-3 rounded-full"
-              onClick={handleClick}
             >
               <Headset className="w-5 h-5" /> Services <ChevronDown size={18} />
             </Link>
@@ -154,10 +144,7 @@ export default function NavigationBar() {
                       href="/services/customer-support-services"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("services", 0, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Headset className="w-4 h-4" /> Customer Support
@@ -173,10 +160,7 @@ export default function NavigationBar() {
                       href="/services/digital-marketing-services"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("services", 1, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Megaphone className="w-4 h-4" /> Digital Marketing
@@ -192,10 +176,7 @@ export default function NavigationBar() {
                       href="/services/administrative-support"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("services", 2, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <ClipboardList className="w-4 h-4" /> Administrative
@@ -227,10 +208,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/customer-support-services/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Phone className="w-4 h-4" /> Inbound and
                                   Outbound Calling
@@ -238,10 +216,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/customer-support-services/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <UserCircle className="w-4 h-4" /> Customer
                                   Service Representative
@@ -249,10 +224,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/customer-support-services/2"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Calendar className="w-4 h-4" /> Appointment
                                   Setting
@@ -260,10 +232,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/customer-support-services/3"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Inbox className="w-4 h-4" /> Front Desk
                                   Support
@@ -271,10 +240,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/customer-support-services/4"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <MessageCircle className="w-4 h-4" /> Chat
                                   Support
@@ -282,20 +248,14 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/customer-support-services/5"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Mail className="w-4 h-4" /> Email Support
                                 </Link>
                                 <Link
                                   href="/services/customer-support-services/6"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <UserCircle className="w-4 h-4" /> Virtual
                                   Assistant
@@ -303,10 +263,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/customer-support-services/7"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <ShoppingCart className="w-4 h-4" /> Virtual
                                   Order Taker
@@ -314,10 +271,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/customer-support-services/8"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <CheckCircle className="w-4 h-4" /> Quality
                                   Assurance
@@ -327,10 +281,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/digital-marketing-services/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Search className="w-4 h-4" /> SEO (Search
                                   Engine Optimization)
@@ -338,10 +289,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/digital-marketing-services/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Share2 className="w-4 h-4" /> Social Media
                                   Marketing
@@ -349,10 +297,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/digital-marketing-services/2"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <CreditCard className="w-4 h-4" /> PPC
                                   (Pay‑Per‑Click) Management
@@ -360,10 +305,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/digital-marketing-services/3"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <ShoppingBag className="w-4 h-4" /> E‑commerce
                                   Marketing
@@ -371,10 +313,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/digital-marketing-services/4"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <TrendingUp className="w-4 h-4" /> Conversion
                                   Rate Optimization
@@ -384,20 +323,14 @@ export default function NavigationBar() {
                                 <Link
                                   href="/services/administrative-support/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Users className="w-4 h-4" /> CRM Support
                                 </Link>
                                 <Link
                                   href="/services/administrative-support/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Zap className="w-4 h-4" /> Automation
                                   Services
@@ -423,7 +356,6 @@ export default function NavigationBar() {
             <Link
               href="/solution-page"
               className="flex items-center gap-1 text-white font-medium hover:bg-[#c93c3c] py-2 px-3 rounded-full"
-              onClick={handleClick}
             >
               <Settings className="w-5 h-5" /> Solutions{" "}
               <ChevronDown size={18} />
@@ -444,10 +376,7 @@ export default function NavigationBar() {
                       href="/solutions/business-process-automation"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("solutions", 0, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Workflow className="w-4 h-4" /> Business Process
@@ -463,10 +392,7 @@ export default function NavigationBar() {
                       href="/solutions/ai-and-machine-learning"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("solutions", 1, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Brain className="w-4 h-4" /> AI & Machine Learning
@@ -481,10 +407,7 @@ export default function NavigationBar() {
                       href="/solutions/communication-&-collaboration-tools"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("solutions", 2, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <MessageSquare className="w-4 h-4" /> Communication &
@@ -500,10 +423,7 @@ export default function NavigationBar() {
                       href="/solutions/data-business-intelligence"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("solutions", 3, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Database className="w-4 h-4" /> Data & Business
@@ -519,10 +439,7 @@ export default function NavigationBar() {
                       href="/solutions/crm-marketing-automation"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("solutions", 4, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Users className="w-4 h-4" /> CRM & Marketing Automation
@@ -537,10 +454,7 @@ export default function NavigationBar() {
                       href="/solutions/cloud-infrastructure"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("solutions", 5, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Cloud className="w-4 h-4" /> Cloud & Infrastructure
@@ -555,10 +469,7 @@ export default function NavigationBar() {
                       href="/solutions/security-compliance"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("solutions", 6, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Shield className="w-4 h-4" /> Security & Compliance
@@ -573,10 +484,7 @@ export default function NavigationBar() {
                       href="/solutions/customer-insights-feedback"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("solutions", 7, e)}
-                      onClick={(e) => {
-                        closeAll(e);
-                        handleClick(e);
-                      }}
+                      onClick={closeAll}
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <BarChart2 className="w-4 h-4" /> Customer Insights &
@@ -608,10 +516,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/business-process-automation/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Zap className="w-4 h-4" /> Workflow
                                   Automation (Zapier, Monday.com, Power
@@ -620,10 +525,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/business-process-automation/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <ListChecks className="w-4 h-4" /> Task
                                   Management &amp; Orchestration
@@ -633,10 +535,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/ai-and-machine-learning/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Bot className="w-4 h-4" /> Chatbots &amp;
                                   Intelligent Ticket Routing
@@ -644,10 +543,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/ai-and-machine-learning/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <BarChart2 className="w-4 h-4" /> Predictive
                                   Analytics
@@ -657,10 +553,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/communication-&-collaboration-tools/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <MessageSquare className="w-4 h-4" />{" "}
                                   Microsoft Teams
@@ -668,20 +561,14 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/communication-&-collaboration-tools/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <MessageSquare className="w-4 h-4" /> Slack
                                 </Link>
                                 <Link
                                   href="/solutions/communication-&-collaboration-tools/2"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <MessageSquare className="w-4 h-4" /> Zoom
                                 </Link>
@@ -690,20 +577,14 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/data-business-intelligence/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <BarChart2 className="w-4 h-4" /> Power BI
                                 </Link>
                                 <Link
                                   href="/solutions/data-business-intelligence/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <BarChart2 className="w-4 h-4" />{" "}
                                   Looker Studio
@@ -711,10 +592,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/data-business-intelligence/2"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <BarChart2 className="w-4 h-4" /> Tableau
                                 </Link>
@@ -723,20 +601,14 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/crm-marketing-automation/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Users className="w-4 h-4" /> Salesforce
                                 </Link>
                                 <Link
                                   href="/solutions/crm-marketing-automation/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Users className="w-4 h-4" /> HubSpot
                                 </Link>
@@ -745,10 +617,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/cloud-infrastructure/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Cloud className="w-4 h-4" /> Amazon Web
                                   Services (AWS)
@@ -756,20 +625,14 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/cloud-infrastructure/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Cloud className="w-4 h-4" /> Kubernetes
                                 </Link>
                                 <Link
                                   href="/solutions/cloud-infrastructure/2"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Github className="w-4 h-4" /> GitHub (CI/CD,
                                   Private Repos)
@@ -779,10 +642,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/security-compliance/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Shield className="w-4 h-4" /> ISO 27001
                                   Compliance
@@ -790,10 +650,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/security-compliance/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <FileText className="w-4 h-4" />{" "}
                                   Process Street
@@ -801,10 +658,7 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/security-compliance/2"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <ClipboardCheck className="w-4 h-4" /> Qualio
                                 </Link>
@@ -813,20 +667,14 @@ export default function NavigationBar() {
                                 <Link
                                   href="/solutions/customer-insights-feedback/0"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <Type className="w-4 h-4" /> Typeform
                                 </Link>
                                 <Link
                                   href="/solutions/customer-insights-feedback/1"
                                   className="flex items-center gap-2 p-2 hover:bg-[#b53535] text-sm"
-                                  onClick={(e) => {
-                                    closeAll(e);
-                                    handleClick(e);
-                                  }}
+                                  onClick={closeAll}
                                 >
                                   <ClipboardCopy className="w-4 h-4" />{" "}
                                   SurveyMonkey
@@ -846,14 +694,12 @@ export default function NavigationBar() {
           <Link
             href="/joinus"
             className="flex items-center gap-1 text-white font-medium hover:bg-[#c93c3c] py-2 px-3 rounded-full"
-            onClick={handleClick}
           >
             <Users className="w-5 h-5 " /> Join Us
           </Link>
           <Link
             href="/aboutus"
             className="flex items-center gap-1 text-white font-medium hover:bg-[#c93c3c] py-2 px-3 rounded-full"
-            onClick={handleClick}
           >
             <Info className="w-5 h-5" /> About Us
           </Link>
@@ -926,30 +772,21 @@ export default function NavigationBar() {
                         <Link
                           href="/services/customer-support-services"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Customer Support Services
                         </Link>
                         <Link
                           href="/services/digital-marketing-services"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Digital Marketing Services
                         </Link>
                         <Link
                           href="/services/administrative-support"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Administrative Support
                         </Link>
@@ -984,80 +821,56 @@ export default function NavigationBar() {
                         <Link
                           href="/solutions/business-process-automation"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Business Process Automation
                         </Link>
                         <Link
                           href="/solutions/ai-and-machine-learning"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           AI & Machine Learning
                         </Link>
                         <Link
                           href="/solutions/communication-collaboration"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Communication & Collaboration Tools
                         </Link>
                         <Link
                           href="/solutions/data-business-intelligence"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Data & Business Intelligence
                         </Link>
                         <Link
                           href="/solutions/crm-marketing-automation"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           CRM & Marketing Automation
                         </Link>
                         <Link
                           href="/solutions/cloud-infrastructure"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Cloud & Infrastructure
                         </Link>
                         <Link
                           href="/solutions/security-compliance"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Security & Compliance
                         </Link>
                         <Link
                           href="/solutions/customer-insights-feedback"
                           className="block py-1 text-sm hover:text-[#C93C3C]"
-                          onClick={(e) => {
-                            closeMobileMenu(e); // First function call
-                            handleClick(e); // Second function call
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           Customer Insights & Feedback
                         </Link>
@@ -1071,30 +884,21 @@ export default function NavigationBar() {
                 <Link
                   href="#join"
                   className="block py-2 font-medium text-black"
-                  onClick={(e) => {
-                    closeMobileMenu(e); // First function call
-                    handleClick(e); // Second function call
-                  }}
+                  onClick={closeMobileMenu}
                 >
                   Join Us
                 </Link>
                 <Link
                   href="#about"
                   className="block py-2 font-medium text-black"
-                  onClick={(e) => {
-                    closeMobileMenu(e); // First function call
-                    handleClick(e); // Second function call
-                  }}
+                  onClick={closeMobileMenu}
                 >
                   About Us
                 </Link>
                 <Link href="/aboutus#contact-form" scroll={true}>
                   <button
                     className="w-full bg-[#C93C3C] text-white font-medium py-2 px-4 rounded-lg shadow-[0_4px_6px_0_rgba(201,60,60,0.4)] hover:bg-[#b53535] transition-colors mt-2"
-                    onClick={(e) => {
-                      closeMobileMenu(e); // First function call
-                      handleClick(e); // Second function call
-                    }}
+                    onClick={closeMobileMenu}
                   >
                     Reach out to us
                   </button>
