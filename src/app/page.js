@@ -9,6 +9,7 @@ import Testimonials from './components/testimonials/testminials';
 import Hero2 from './components/hero2/hero2';
 import CompanyCulture from './components/company-culture/comapnyCulture';
 import { BackgroundBoxesDemo } from './components/backgroundBoxesBg';
+import CompanyTimeline from './components/company-culture/comapnyCulture';
 
 
 const Home = () => {
@@ -20,7 +21,7 @@ const Home = () => {
      <OurServices/>
     <OurSolutions/>
     <WhyUs/>
-    <CompanyCulture/>
+    <CompanyTimeline/>
     <Testimonials/>
     <ContactForm/> 
     
