@@ -144,7 +144,6 @@ export default function NavigationBar() {
                       href="/services/customer-support-services"
                       className="flex justify-between items-center p-2 hover:bg-[#b53535] cursor-pointer"
                       onMouseEnter={(e) => hoverCat("services", 0, e)}
-                      
                     >
                       <span className="flex items-center gap-2 text-sm">
                         <Headset className="w-4 h-4" /> Customer Support
@@ -697,24 +696,21 @@ export default function NavigationBar() {
           >
             <Users className="w-5 h-5 " /> Join Us
           </Link>
+
           <Link
             href="/aboutus"
             className="flex items-center gap-1 text-white font-medium hover:bg-[#c93c3c] py-2 px-3 rounded-full"
           >
             <Info className="w-5 h-5" /> About Us
           </Link>
-          <Link href="#contact-form" scroll={true}>
+
+          {/* Contact Us Button */}
+          <Link href="mailto:hr@bpobrigade.com">
             <motion.button
               className="relative overflow-hidden rounded-full bg-white text-neutral-900 shadow-[10px_10px_20px_rgba(0,0,0,0.05)] cursor-pointer group px-6 py-2 font-medium flex items-center gap-2"
               style={{ "--clr": "#C93C3C" }}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
-              onClick={() => {
-                const form = document.getElementById("contact-form");
-                if (form) {
-                  form.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
             >
               {/* Sliding Background */}
               <span className="absolute inset-0 bg-[var(--clr)] transform -translate-x-full transition-transform duration-300 group-hover:translate-x-0 z-0 rounded-full"></span>

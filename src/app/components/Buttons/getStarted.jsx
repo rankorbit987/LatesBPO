@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-export default function ServicesButton() {
+export default function ServicesGetStartedButton() {
   return (
     <>
       {/* heading + underline */}
       <div className="inline-block font-montserrat">
         <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-3xl font-semibold mb-1">
-          Services
+          Get Started
         </h2>
         <div className="h-[3px] w-full bg-white rounded-full" />
       </div>
